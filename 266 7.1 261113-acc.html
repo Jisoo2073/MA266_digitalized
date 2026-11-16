@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>11/13 (F) Lec 31 - Accessible Math Notes</title>
+  
+  <meta name="description" content="Accessible digitized mathematical notes on 11/13 (F) Lec 31">
+  <meta name="keywords" content="mathematics, STEM, lecture notes, LaTeX, MathJax, accessible math, WCAG">
+  <meta property="og:title" content="11/13 (F) Lec 31">
+  <meta property="og:description" content="Accessible digitized mathematical notes on 11/13 (F) Lec 31">
+  <meta property="og:type" content="article">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "11/13 (F) Lec 31",
+    
+    "description": "Accessible digitized mathematical notes on 11/13 (F) Lec 31",
+    "datePublished": "2026-11-16",
+    "inLanguage": "en"
+  }
+  </script>
+
+  <!-- MathJax 3 LaTeX Rendering with Accessibility -->
+  <script>
+    window.MathJax = {
+      loader: { load: ['[tex]/mathtools', '[tex]/ams'] },
+      tex: {
+        packages: { '[+]': ['mathtools', 'ams'] },
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      startup: {
+        pageReady: function() {
+          return MathJax.startup.defaultPageReady().then(function() {
+            document.querySelectorAll('mjx-container[display="true"]').forEach(function(el) {
+              el.setAttribute('tabindex', '0');
+              el.setAttribute('role', 'group');
+              el.setAttribute('aria-label', 'Mathematical equation');
+            });
+          });
+        }
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
+
+  <style>
+    /* WCAG 2.2 AA Compliant Accessible Styling */
+    :root {
+      --bg: #ffffff;
+      --card-bg: #ffffff;
+      --ink-primary: #0f172a;    /* High contrast > 15:1 */
+      --ink-secondary: #334155;  /* High contrast > 7:1 */
+      --ink-muted: #475569;      /* Contrast > 4.5:1 */
+      --border: #e2e8f0;
+      --border-subtle: #cbd5e1;
+      --accent: #4338ca;         /* Indigo 700, high contrast */
+      --accent-bg: #f8fafc;
+      --notebox-border: #4f46e5;
+      --notebox-bg: #faf5ff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: #f1f5f9;
+      color: var(--ink-primary);
+      margin: 0;
+      padding: clamp(1rem, 0.75rem + 1.5vw, 2.5rem) clamp(0.5rem, 0.25rem + 1vw, 1.5rem);
+      line-height: 1.75;
+      font-size: clamp(1rem, 0.95rem + 0.35vw, 1.125rem);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* Physically Separate Document Pages Container */
+    .document-stream {
+      max-width: 52rem;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    /* Individual Physical Sheet Card */
+    .document-page {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: clamp(0.75rem, 0.5rem + 1vw, 1.25rem);
+      padding: clamp(1.25rem, 1rem + 2.5vw, 3.25rem);
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.03);
+      position: relative;
+    }
+
+    /* Page Header Bar */
+    .page-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .page-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ink-muted);
+      background: #f1f5f9;
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+      border: 1px solid var(--border);
+    }
+
+    .document-author {
+      margin: 0.5rem 0 0 0;
+      color: var(--ink-secondary);
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .original-pdf-link-row {
+      margin: 0.75rem 0 0 0;
+    }
+
+    .original-pdf-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      min-height: 44px;
+      padding: 0.25rem 0;
+      color: var(--accent);
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1.5px;
+      overflow-wrap: anywhere;
+      border-radius: 0.25rem;
+      transition: color 150ms ease;
+    }
+
+    .original-pdf-link:hover {
+      color: #312e81;
+    }
+
+    .original-pdf-link:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .original-pdf-link svg {
+      flex-shrink: 0;
+    }
+
+    /* Screen Reader Only Utility (WCAG A11y) */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+
+    /* Layout Grids & Comparison Columns */
+    .grid {
+      display: grid;
+    }
+    .grid-cols-1 {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+    @media (min-width: 768px) {
+      .md:grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    .gap-4 { gap: 1rem; }
+    .gap-6 { gap: 1.5rem; }
+    .items-start { align-items: flex-start; }
+    .items-center { align-items: center; }
+
+    /* Document Header */
+    .document-header {
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    /* Typography & Hierarchy */
+    h1, h2, h3, h4, h5, h6 {
+      color: #020617;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    h1 {
+      font-size: 2.25rem;
+      margin-top: 0;
+    }
+
+    h2 {
+      font-size: 1.625rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+      margin-top: 2.5rem;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+    }
+
+    p {
+      margin: 1.25rem 0;
+      color: var(--ink-primary);
+    }
+
+    ul, ol {
+      margin: 1.25rem 0;
+      padding-left: 2rem;
+      color: var(--ink-primary);
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Math Equations (LaTeX) */
+    mjx-container[display="true"] {
+      max-width: 100% !important;
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      padding: 0.75rem 0.5rem !important;
+      margin: 1.75rem 0 !important;
+      border-radius: 0.5rem;
+      outline: none;
+    }
+
+    mjx-container[display="true"]:focus-visible {
+      outline: 2px solid var(--accent);
+      background: #f1f5f9;
+    }
+
+    /* Formula & Definition Callout Boxes */
+    .notebox {
+      border-left: 4px solid var(--notebox-border);
+      background-color: var(--accent-bg);
+      padding: 1.25rem 1.75rem;
+      margin: 2rem 0;
+      border-radius: 0 0.75rem 0.75rem 0;
+      border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      color: var(--ink-primary);
+    }
+
+    /* Accessible Tables */
+    .table-container, .overflow-x-auto {
+      width: 100%;
+      overflow-x: auto;
+      margin: 1.75rem 0;
+      border-radius: 0.75rem;
+      border: 1px solid var(--border-subtle);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.975rem;
+      background: #ffffff;
+    }
+
+    caption {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--ink-secondary);
+      text-align: left;
+      padding: 0.75rem 1rem;
+      background: #f1f5f9;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    th, td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background-color: #f8fafc;
+      color: #0f172a;
+      font-weight: 700;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Figures & Visual Diagrams */
+    figure {
+      margin: 2rem 0;
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      overflow: hidden;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    figure img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    figcaption {
+      width: 100%;
+      padding: 0.875rem 1.25rem;
+      background-color: var(--accent-bg);
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem;
+      color: var(--ink-secondary);
+      text-align: left;
+    }
+
+    figcaption .figure-title,
+    figcaption div.font-bold {
+      font-weight: 700;
+      color: var(--ink-primary);
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+      display: block;
+      text-align: left;
+    }
+
+    figcaption .figure-title span,
+    figcaption div.font-bold span {
+      color: var(--ink-muted);
+      font-weight: 600;
+      margin-right: 0.25rem;
+    }
+
+    details summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--accent);
+      outline: none;
+      list-style: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      user-select: none;
+      font-size: 0.825rem;
+    }
+
+    details summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details summary svg {
+      width: 0.875rem;
+      height: 0.875rem;
+      transition: transform 0.2s ease;
+      stroke: currentColor;
+    }
+
+    details[open] summary svg {
+      transform: rotate(90deg);
+    }
+
+    details summary:focus-visible {
+      text-decoration: underline;
+    }
+
+    .details-content {
+      margin-top: 0.5rem;
+      padding: 0.75rem 1rem;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+      color: var(--ink-primary);
+      line-height: 1.6;
+    }
+
+    /* Small Screen Adjustments */
+    @media (max-width: 640px) {
+      .document-stream {
+        gap: 1.5rem;
+      }
+      .page-header-bar {
+        margin-bottom: 1.25rem;
+      }
+      .document-header {
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+      }
+    }
+
+    /* ==========================================================================
+       Print-Specific CSS: Highly Accessible, Clean Page Breaks, Crisp Typography
+       ========================================================================== */
+    @media print {
+      @page {
+        size: letter portrait;
+        margin: 1.5cm 1.5cm 2cm 1.5cm;
+      }
+
+      *, *::before, *::after {
+        background: transparent !important;
+        color: #000000 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+      }
+
+      html, body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        font-size: 10.5pt !important;
+        line-height: 1.5 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      /* Hide interactive buttons, download links, controls */
+      button,
+      .no-print,
+      nav,
+      [role="toolbar"],
+      [role="dialog"],
+      [aria-label*="download" i],
+      [title*="Download" i],
+      [title*="Print" i],
+      .edit-figure-btn {
+        display: none !important;
+      }
+
+      /* Physical page stream turns into distinct printed sheets */
+      .document-stream {
+        max-width: 100% !important;
+        gap: 0 !important;
+        display: block !important;
+      }
+
+      .document-page {
+        border: none !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+        margin: 0 0 2cm 0 !important;
+        max-width: 100% !important;
+        background: #ffffff !important;
+        break-after: page !important;
+        page-break-after: always !important;
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+
+      .document-page:last-child {
+        break-after: auto !important;
+        page-break-after: auto !important;
+        margin-bottom: 0 !important;
+      }
+
+      .page-header-bar {
+        border-bottom: 0.5pt solid #cbd5e1 !important;
+        margin-bottom: 12pt !important;
+        padding-bottom: 4pt !important;
+      }
+
+      .page-badge {
+        font-size: 8.5pt !important;
+        color: #475569 !important;
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+      }
+
+      /* Headings in Print */
+      h1, h2, h3, h4, h5, h6 {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+        color: #000000 !important;
+      }
+
+      h1 {
+        font-size: 18pt !important;
+        line-height: 1.2 !important;
+        margin-top: 0 !important;
+        margin-bottom: 10pt !important;
+      }
+
+      h2 {
+        font-size: 13.5pt !important;
+        line-height: 1.25 !important;
+        margin-top: 14pt !important;
+        margin-bottom: 6pt !important;
+        border-bottom: 1pt solid #cbd5e1 !important;
+        padding-bottom: 3pt !important;
+      }
+
+      h3 {
+        font-size: 11.5pt !important;
+        line-height: 1.3 !important;
+        margin-top: 10pt !important;
+        margin-bottom: 4pt !important;
+      }
+
+      p, li, td, th {
+        font-size: 10.5pt !important;
+        line-height: 1.5 !important;
+        color: #000000 !important;
+      }
+
+      /* Keep complex structures together across page breaks */
+      figure, table, .notebox, mjx-container[display="true"] {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+
+      mjx-container[display="true"] {
+        overflow-x: visible !important;
+        margin: 10pt 0 !important;
+        text-align: center !important;
+      }
+
+      .notebox {
+        border-left: 3pt solid #4338ca !important;
+        border-top: 1pt solid #cbd5e1 !important;
+        border-right: 1pt solid #cbd5e1 !important;
+        border-bottom: 1pt solid #cbd5e1 !important;
+        background-color: #f8fafc !important;
+        padding: 8pt 12pt !important;
+        margin: 10pt 0 !important;
+      }
+
+      figure {
+        border: 1pt solid #cbd5e1 !important;
+        margin: 12pt 0 !important;
+      }
+
+      figcaption {
+        background-color: #f8fafc !important;
+        border-top: 1pt solid #cbd5e1 !important;
+        padding: 6pt 10pt !important;
+        font-size: 9pt !important;
+      }
+
+      details summary {
+        display: none !important;
+      }
+
+      .details-content {
+        display: block !important;
+        margin-top: 4pt !important;
+        padding: 4pt 6pt !important;
+        background: #ffffff !important;
+        border: 0.5pt solid #cbd5e1 !important;
+        font-size: 8.5pt !important;
+        line-height: 1.4 !important;
+      }
+
+      table {
+        border-collapse: collapse !important;
+        width: 100% !important;
+        margin: 10pt 0 !important;
+      }
+
+      th, td {
+        border: 1pt solid #cbd5e1 !important;
+        padding: 5pt 7pt !important;
+        font-size: 9.5pt !important;
+      }
+
+      th {
+        background-color: #f1f5f9 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="document-stream" role="main">
+    
+      <section class="document-page" id="page-sheet-1" aria-label="Page 1 of 5">
+        <div class="page-header-bar" aria-hidden="true">
+          <span class="page-badge">Page 1 of 5</span>
+        </div>
+
+        
+          <header class="document-header">
+            <h1 id="document-title">11/13 (F) Lec 31</h1>
+            
+            
+              <p class="original-pdf-link-row no-print">
+                <a
+                  class="original-pdf-link"
+                  href="266%207.1%20261113.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open original PDF 266 7.1 261113.pdf in a new tab"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                    <polyline points="10 9 9 9 8 9"/>
+                  </svg>
+                  <span>Open original PDF (266 7.1 261113.pdf)</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                    <polyline points="15 3 21 3 21 9"/>
+                    <line x1="10" y1="14" x2="21" y2="3"/>
+                  </svg>
+                </a>
+              </p>
+            
+          </header>
+        
+
+        <article class="math-content" id="page-content-1">
+          
+<ul class="list-disc list-outside ml-6 space-y-1 mb-4 text-slate-900">
+  <li>Tonight: Online HW 30</li>
+  <li>Handwritten HW 28, 29, 30</li>
+  <li>Handwritten HW 31: Sec 7-1 P 19, 29</li>
+</ul>
+<h2 class="font-bold tracking-tight text-slate-900 text-xl mt-6 mb-3">Sec 7.1 Laplace transforms and inverse transforms
+</h2>
+<p class="text-slate-900 mb-3">New theory: Laplace transform</p>
+<p class="text-slate-900 mb-3"><strong>Def.</strong> Given function \( f(t) \) defined for all \( t &gt; 0 \)</p>\[
+\begin{aligned} F(s) = \mathcal{L}\{f(t)\}(s) &= \int_{0}^{\infty} e^{-st} f(t)\,dt \\ &= \lim_{b \to \infty}
+\int_{0}^{b} e^{-st} f(t)\,dt \end{aligned} \]<p class="text-slate-900 mb-3"><strong>e.g.</strong></p>\[ \begin{aligned}
+\mathcal{L}\{1\}(s) = \int_{0}^{\infty} e^{-st}\,dt &= \lim_{b \to \infty} \left[ -\frac{1}{s} e^{-bs} + \frac{1}{s}
+\right] \\ &= \frac{1}{s} \end{aligned} \]<p class="text-slate-900 mb-3"><strong>e.g.</strong></p>\[ \begin{aligned}
+\mathcal{L}\{e^{at}\}(s) = \int_{0}^{\infty} e^{-st} e^{at}\,dt &= \int_{0}^{\infty} e^{-(s-a)t}\,dt \\ &= \left[
+-\frac{e^{-(s-a)t}}{s-a} \right]_{t=0}^{\infty} \end{aligned} \]<p class="text-slate-900 mb-3">\(
+  \mathcal{L}\{e^{at}\}(s) = \frac{1}{s-a} \) for \( s &gt; a \)</p>
+        </article>
+      </section>
+    
+
+      <section class="document-page" id="page-sheet-2" aria-label="Page 2 of 5">
+        <div class="page-header-bar" aria-hidden="true">
+          <span class="page-badge">Page 2 of 5</span>
+        </div>
+
+        
+
+        <article class="math-content" id="page-content-2">
+          <section role="region" aria-label="Gamma Function">
+  <h2 class="font-bold tracking-tight text-slate-900 text-xl mt-6 mb-3">Gamma function:</h2>\[ \Gamma(x) = \int_0^\infty
+  e^{-t} t^{x-1} \, dt \quad (x &gt; 0) \]<p class="font-semibold text-slate-900 mt-4 mb-2">Basic facts:</p>
+  <ul class="list-disc list-outside ml-6 space-y-1 mb-4 text-slate-900">
+    <li>\( \Gamma(1) = 1 \)</li>
+    <li>\( \Gamma(x+1) = x\Gamma(x) \)</li>
+    <li>\( \Gamma(n+1) = n! \), \( n \) positive integer.</li>
+  </ul>
+  <p class="text-slate-900 mb-2"><span class="font-semibold">Theorem:</span> \( f(t) = t^a \), \( a &gt; -1 \)</p>\[
+  \mathcal{L}\{t^a\}(s) = \frac{\Gamma(a+1)}{s^{a+1}} \]<p class="text-slate-900 mb-4">In particular \(
+    \mathcal{L}\{t^n\}(s) = \frac{n!}{s^{n+1}}, \quad s &gt; 0 \)</p>
+</section>
+<section role="region" aria-label="Unit Step Function">
+  <h2 class="font-bold tracking-tight text-slate-900 text-xl mt-6 mb-3">Unit step function:</h2>
+  <p class="text-slate-900 mb-2">Let \( a \ge 0 \)</p>\[ u_a(t) = \begin{cases} 0, & t &lt; a \\ 1, & t \ge a \end{cases}
+    \]<figure class="my-8 relative overflow-x-auto rounded-2xl shadow-xs border border-zinc-200 bg-white flex flex-col items-center min-w-0 box-border max-w-full" role="group" aria-label="Visual figure: Graph of unit step function  u_a(t) ">
+      <img src="data:image/png;base64,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" alt="Graph of unit step function  u_a(t) " class="max-w-full h-auto" data-figure-id="fig_1">
+      <figcaption class="p-3.5 sm:p-4 w-full bg-zinc-50 border-t border-zinc-200/80 text-sm text-zinc-700 font-sans text-center leading-relaxed">
+        <div class="font-bold text-zinc-900 block mb-1 figure-title">
+          <span class="text-zinc-500 font-semibold mr-1">Figure:</span>Graph of unit step function \( u_a(t) \)
+        </div>
+        
+          <details class="group mt-2.5 w-full text-left">
+            <summary class="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold text-indigo-700 hover:text-indigo-900 hover:bg-indigo-50/80 rounded-lg cursor-pointer select-none transition-colors duration-150 list-none focus:outline-none focus:ring-2 focus:ring-indigo-500/30">
+              <svg class="w-3.5 h-3.5 transition-transform duration-200 group-open:rotate-90 text-indigo-600 shrink-0 arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+              </svg>
+              <span>Detailed description</span>
+            </summary>
+            <div class="details-content mt-2 text-xs sm:text-sm text-zinc-600 bg-white p-3.5 rounded-xl border border-zinc-200/80 shadow-2xs leading-relaxed text-left">
+              Coordinate graph with horizontal axis \( t \) and vertical axis \( u \). For \( t &lt; a \), the function value is \( 0 \) along the \( t \)-axis, ending with an open circle at \( (a, 0) \). At \( t = a \), there is a jump discontinuity to \( 1 \), and for \( t \ge a \), the function remains constant at \( 1 \) as a horizontal line.
+            </div>
+          </details>
+        
+      </figcaption>
+    </figure>
+    <p class="text-slate-900 mb-4"><span class="font-semibold">Theorem:</span> \( \mathcal{L}\{u_a(t)\}(s) =
+      \frac{e^{-as}}{s}, \quad s &gt; 0 \)</p>
+</section>
+<section role="region" aria-label="Linearity">
+  <h2 class="font-bold tracking-tight text-slate-900 text-xl mt-6 mb-3">Linearity:</h2>
+  <p class="text-slate-900 mb-4">\( \mathcal{L}\{af(t) + bg(t)\} = a\mathcal{L}\{f(t)\} + b\mathcal{L}\{g(t)\} \) \( a,
+    b \) constants</p>
+</section>
+        </article>
+      </section>
+    
+
+      <section class="document-page" id="page-sheet-3" aria-label="Page 3 of 5">
+        <div class="page-header-bar" aria-hidden="true">
+          <span class="page-badge">Page 3 of 5</span>
+        </div>
+
+        
+
+        <article class="math-content" id="page-content-3">
+          <h2 class="font-bold tracking-tight text-slate-900 text-xl mt-6 mb-3">eg. \( f(t) = \sin kt \)</h2>\[ \mathcal{L}\{\sin
+kt\}(s) = \int_0^\infty e^{-st} \sin kt \, dt \]\[ \begin{aligned} \int e^{-st} \sin kt \, dt &= e^{-st} \left(
+-\frac{1}{k} \cos kt \right) - \int -s e^{-st} \left( -\frac{1}{k} \cos kt \right) \, dt \\ &= -\frac{1}{k} e^{-st} \cos
+kt - \int \frac{s}{k} e^{-st} \cos kt \, dt \\ &= -\frac{1}{k} e^{-st} \cos kt - \frac{s}{k} \left( e^{-st} \frac{1}{k}
+\sin kt - \int -s e^{-st} \frac{1}{k} \sin kt \, dt \right) \\ &= -\frac{1}{k} e^{-st} \cos kt - \frac{s}{k^2} e^{-st}
+\sin kt - \frac{s^2}{k^2} \int e^{-st} \sin kt \, dt \end{aligned} \]\[ \int e^{-st} \sin kt \, dt = \frac{k^2}{s^2 +
+k^2} \left( -\frac{1}{k} e^{-st} \cos kt - \frac{s}{k^2} e^{-st} \sin kt \right) \]\[ \int_0^\infty e^{-st} \sin kt \,
+dt = \frac{k^2}{s^2 + k^2} \cdot \frac{1}{k} = \frac{k}{s^2 + k^2} \]<h2 class="font-bold tracking-tight text-slate-900 text-xl mt-6 mb-3">eg. Piecewise Function</h2>\[ f(t) = \begin{cases} 1
+& 1 &lt; t \le 2 \\ 0 & \text{otherwise} \end{cases} \]\[ \mathcal{L}\{f(t)\}(s)=\int_1^2 e^{-st} \, dt \]<p class="text-slate-900 mb-3">or \( f(t) = u_1(t) - u_2(t) \)</p>\[ \mathcal{L}\{f(t)\} = \mathcal{L}\{u_1(t)\} -
+  \mathcal{L}\{u_2(t)\} \]
+        </article>
+      </section>
+    
+
+      <section class="document-page" id="page-sheet-4" aria-label="Page 4 of 5">
+        <div class="page-header-bar" aria-hidden="true">
+          <span class="page-badge">Page 4 of 5</span>
+        </div>
+
+        
+
+        <article class="math-content" id="page-content-4">
+          <h2 class="font-bold tracking-tight text-slate-900 text-xl mt-6 mb-3">Inverse Laplace transform</h2>
+<p class="text-slate-900 mb-3">\( f(t) = \mathcal{L}^{-1}\{F(s)\} \)</p>
+<p class="text-slate-900 mb-2">eg. \( \mathcal{L}^{-1}\left\{\frac{1}{s}\right\}(t) = 1 \) &nbsp;&nbsp; \(
+  \mathcal{L}^{-1}\left\{\frac{1}{s-a}\right\}(t) = e^{at} \)</p>\[
+\mathcal{L}^{-1}\left\{\frac{\Gamma(a+1)}{s^{a+1}}\right\} = t^a \]<p class="text-slate-900 mt-4 mb-2">eg. Find inverse
+  of \( F(s) = \frac{13}{4s+28} \)</p>\[ \mathcal{L}^{-1}\{F(s)\}(t) =
+\frac{13}{4}\mathcal{L}^{-1}\left\{\frac{1}{s+7}\right\}(t) = \frac{13}{4}e^{-7t} \]<div class="overflow-x-auto my-6" role="region" aria-label="Laplace Transform Table">
+  <table class="min-w-full border-collapse border border-slate-300 text-slate-900">
+    <thead>
+      <tr class="bg-slate-100">
+        <th scope="col" class="border border-slate-300 px-4 py-2 text-left bg-zinc-100 text-zinc-900 font-black p-3 border-b border-zinc-300 text-xs uppercase tracking-wider">\( f(t) \)</th>
+        <th scope="col" class="border border-slate-300 px-4 py-2 text-left bg-zinc-100 text-zinc-900 font-black p-3 border-b border-zinc-300 text-xs uppercase tracking-wider">\( F(t) \)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row" class="border border-slate-300 px-4 py-2 font-normal text-left">\( 1 \)</th>
+        <td class="border border-slate-300 px-4 py-2 p-3 border-b border-zinc-200 text-sm text-zinc-800">\( 1/s \)</td>
+      </tr>
+      <tr>
+        <th scope="row" class="border border-slate-300 px-4 py-2 font-normal text-left">\( t \)</th>
+        <td class="border border-slate-300 px-4 py-2 p-3 border-b border-zinc-200 text-sm text-zinc-800">\( 1/s^2 \)</td>
+      </tr>
+      <tr>
+        <th scope="row" class="border border-slate-300 px-4 py-2 font-normal text-left">\( t^n \)</th>
+        <td class="border border-slate-300 px-4 py-2 p-3 border-b border-zinc-200 text-sm text-zinc-800">\( \frac{n!}{s^{n+1}} \)</td>
+      </tr>
+      <tr>
+        <th scope="row" class="border border-slate-300 px-4 py-2 font-normal text-left">\( t^a \)</th>
+        <td class="border border-slate-300 px-4 py-2 p-3 border-b border-zinc-200 text-sm text-zinc-800">\( \frac{\Gamma(a+1)}{s^{a+1}} \)</td>
+      </tr>
+      <tr>
+        <th scope="row" class="border border-slate-300 px-4 py-2 font-normal text-left">\( e^{at} \)</th>
+        <td class="border border-slate-300 px-4 py-2 p-3 border-b border-zinc-200 text-sm text-zinc-800">\( \frac{1}{s-a} \)</td>
+      </tr>
+      <tr>
+        <th scope="row" class="border border-slate-300 px-4 py-2 font-normal text-left">\( \cos kt \)</th>
+        <td class="border border-slate-300 px-4 py-2 p-3 border-b border-zinc-200 text-sm text-zinc-800">\( \frac{s}{s^2+k^2} \)</td>
+      </tr>
+      <tr>
+        <th scope="row" class="border border-slate-300 px-4 py-2 font-normal text-left">\( \sin kt \)</th>
+        <td class="border border-slate-300 px-4 py-2 p-3 border-b border-zinc-200 text-sm text-zinc-800">\( \frac{k}{s^2+k^2} \)</td>
+      </tr>
+      <tr>
+        <th scope="row" class="border border-slate-300 px-4 py-2 font-normal text-left">\( \cosh kt \)</th>
+        <td class="border border-slate-300 px-4 py-2 p-3 border-b border-zinc-200 text-sm text-zinc-800">\( \frac{s}{s^2-k^2} \)</td>
+      </tr>
+      <tr>
+        <th scope="row" class="border border-slate-300 px-4 py-2 font-normal text-left">\( \sinh kt \)</th>
+        <td class="border border-slate-300 px-4 py-2 p-3 border-b border-zinc-200 text-sm text-zinc-800">\( \frac{k}{s^2-k^2} \)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+        </article>
+      </section>
+    
+
+      <section class="document-page" id="page-sheet-5" aria-label="Page 5 of 5">
+        <div class="page-header-bar" aria-hidden="true">
+          <span class="page-badge">Page 5 of 5</span>
+        </div>
+
+        
+
+        <article class="math-content" id="page-content-5">
+          <h2 class="font-bold tracking-tight text-slate-900 text-xl mt-6 mb-3">Laplace Transform Table</h2>
+<div class="overflow-x-auto my-6" role="region" aria-label="Laplace Transform Table">
+  <table class="min-w-full border-collapse border border-slate-300 text-slate-900">
+    <thead>
+      <tr class="bg-slate-100">
+        <th scope="col" class="border border-slate-300 px-4 py-2 text-left font-semibold bg-zinc-100 text-zinc-900 font-black p-3 border-b border-zinc-300 text-xs uppercase tracking-wider">\( f(t) \)</th>
+        <th scope="col" class="border border-slate-300 px-4 py-2 text-left font-semibold bg-zinc-100 text-zinc-900 font-black p-3 border-b border-zinc-300 text-xs uppercase tracking-wider">\( F(s) \)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row" class="border border-slate-300 px-4 py-2 text-left font-normal">\( u_a(t) = u(t - a) \)</th>
+        <td class="border border-slate-300 px-4 py-2 p-3 border-b border-zinc-200 text-sm text-zinc-800">\( \frac{e^{-as}}{s} \)</td>
+      </tr>
+      <tr>
+        <th scope="row" class="border border-slate-300 px-4 py-2 text-left font-normal">\( e^{at} t^n \)</th>
+        <td class="border border-slate-300 px-4 py-2 p-3 border-b border-zinc-200 text-sm text-zinc-800">\( \frac{n!}{(s - a)^{n + 1}} \)</td>
+      </tr>
+      <tr>
+        <th scope="row" class="border border-slate-300 px-4 py-2 text-left font-normal">\( e^{at} \cos kt \)</th>
+        <td class="border border-slate-300 px-4 py-2 p-3 border-b border-zinc-200 text-sm text-zinc-800">\( \frac{s - a}{(s - a)^2 + k^2} \)</td>
+      </tr>
+      <tr>
+        <th scope="row" class="border border-slate-300 px-4 py-2 text-left font-normal">\( e^{at} \sin kt \)</th>
+        <td class="border border-slate-300 px-4 py-2 p-3 border-b border-zinc-200 text-sm text-zinc-800">\( \frac{k}{(s - a)^2 + k^2} \)</td>
+      </tr>
+      <tr>
+        <th scope="row" class="border border-slate-300 px-4 py-2 text-left font-normal">\( \frac{t \sin kt}{2k} \)</th>
+        <td class="border border-slate-300 px-4 py-2 p-3 border-b border-zinc-200 text-sm text-zinc-800">\( \frac{s}{(s^2 + k^2)^2} \)</td>
+      </tr>
+      <tr>
+        <th scope="row" class="border border-slate-300 px-4 py-2 text-left font-normal">\( \frac{\sin kt - kt \cos
+          kt}{2k^3} \)</th>
+        <td class="border border-slate-300 px-4 py-2 p-3 border-b border-zinc-200 text-sm text-zinc-800">\( \frac{1}{(s^2 + k^2)^2} \)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+        </article>
+      </section>
+    
+  </main>
+</body>
+</html>
