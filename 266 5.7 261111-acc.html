@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sec 5.7 Nonhomogeneous Linear systems - Accessible Math Notes</title>
+  
+  <meta name="description" content="Accessible digitized mathematical notes on Sec 5.7 Nonhomogeneous Linear systems">
+  <meta name="keywords" content="mathematics, STEM, lecture notes, LaTeX, MathJax, accessible math, WCAG">
+  <meta property="og:title" content="Sec 5.7 Nonhomogeneous Linear systems">
+  <meta property="og:description" content="Accessible digitized mathematical notes on Sec 5.7 Nonhomogeneous Linear systems">
+  <meta property="og:type" content="article">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "Sec 5.7 Nonhomogeneous Linear systems",
+    
+    "description": "Accessible digitized mathematical notes on Sec 5.7 Nonhomogeneous Linear systems",
+    "datePublished": "2026-11-16",
+    "inLanguage": "en"
+  }
+  </script>
+
+  <!-- MathJax 3 LaTeX Rendering with Accessibility -->
+  <script>
+    window.MathJax = {
+      loader: { load: ['[tex]/mathtools', '[tex]/ams'] },
+      tex: {
+        packages: { '[+]': ['mathtools', 'ams'] },
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      startup: {
+        pageReady: function() {
+          return MathJax.startup.defaultPageReady().then(function() {
+            document.querySelectorAll('mjx-container[display="true"]').forEach(function(el) {
+              el.setAttribute('tabindex', '0');
+              el.setAttribute('role', 'group');
+              el.setAttribute('aria-label', 'Mathematical equation');
+            });
+          });
+        }
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
+
+  <style>
+    /* WCAG 2.2 AA Compliant Accessible Styling */
+    :root {
+      --bg: #ffffff;
+      --card-bg: #ffffff;
+      --ink-primary: #0f172a;    /* High contrast > 15:1 */
+      --ink-secondary: #334155;  /* High contrast > 7:1 */
+      --ink-muted: #475569;      /* Contrast > 4.5:1 */
+      --border: #e2e8f0;
+      --border-subtle: #cbd5e1;
+      --accent: #4338ca;         /* Indigo 700, high contrast */
+      --accent-bg: #f8fafc;
+      --notebox-border: #4f46e5;
+      --notebox-bg: #faf5ff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: #f1f5f9;
+      color: var(--ink-primary);
+      margin: 0;
+      padding: clamp(1rem, 0.75rem + 1.5vw, 2.5rem) clamp(0.5rem, 0.25rem + 1vw, 1.5rem);
+      line-height: 1.75;
+      font-size: clamp(1rem, 0.95rem + 0.35vw, 1.125rem);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* Physically Separate Document Pages Container */
+    .document-stream {
+      max-width: 52rem;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    /* Individual Physical Sheet Card */
+    .document-page {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: clamp(0.75rem, 0.5rem + 1vw, 1.25rem);
+      padding: clamp(1.25rem, 1rem + 2.5vw, 3.25rem);
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.03);
+      position: relative;
+    }
+
+    /* Page Header Bar */
+    .page-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .page-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ink-muted);
+      background: #f1f5f9;
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+      border: 1px solid var(--border);
+    }
+
+    .document-author {
+      margin: 0.5rem 0 0 0;
+      color: var(--ink-secondary);
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .original-pdf-link-row {
+      margin: 0.75rem 0 0 0;
+    }
+
+    .original-pdf-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      min-height: 44px;
+      padding: 0.25rem 0;
+      color: var(--accent);
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1.5px;
+      overflow-wrap: anywhere;
+      border-radius: 0.25rem;
+      transition: color 150ms ease;
+    }
+
+    .original-pdf-link:hover {
+      color: #312e81;
+    }
+
+    .original-pdf-link:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .original-pdf-link svg {
+      flex-shrink: 0;
+    }
+
+    /* Screen Reader Only Utility (WCAG A11y) */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+
+    /* Layout Grids & Comparison Columns */
+    .grid {
+      display: grid;
+    }
+    .grid-cols-1 {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+    @media (min-width: 768px) {
+      .md:grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    .gap-4 { gap: 1rem; }
+    .gap-6 { gap: 1.5rem; }
+    .items-start { align-items: flex-start; }
+    .items-center { align-items: center; }
+
+    /* Document Header */
+    .document-header {
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    /* Typography & Hierarchy */
+    h1, h2, h3, h4, h5, h6 {
+      color: #020617;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    h1 {
+      font-size: 2.25rem;
+      margin-top: 0;
+    }
+
+    h2 {
+      font-size: 1.625rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+      margin-top: 2.5rem;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+    }
+
+    p {
+      margin: 1.25rem 0;
+      color: var(--ink-primary);
+    }
+
+    ul, ol {
+      margin: 1.25rem 0;
+      padding-left: 2rem;
+      color: var(--ink-primary);
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Math Equations (LaTeX) */
+    mjx-container[display="true"] {
+      max-width: 100% !important;
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      padding: 0.75rem 0.5rem !important;
+      margin: 1.75rem 0 !important;
+      border-radius: 0.5rem;
+      outline: none;
+    }
+
+    mjx-container[display="true"]:focus-visible {
+      outline: 2px solid var(--accent);
+      background: #f1f5f9;
+    }
+
+    /* Formula & Definition Callout Boxes */
+    .notebox {
+      border-left: 4px solid var(--notebox-border);
+      background-color: var(--accent-bg);
+      padding: 1.25rem 1.75rem;
+      margin: 2rem 0;
+      border-radius: 0 0.75rem 0.75rem 0;
+      border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      color: var(--ink-primary);
+    }
+
+    /* Accessible Tables */
+    .table-container, .overflow-x-auto {
+      width: 100%;
+      overflow-x: auto;
+      margin: 1.75rem 0;
+      border-radius: 0.75rem;
+      border: 1px solid var(--border-subtle);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.975rem;
+      background: #ffffff;
+    }
+
+    caption {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--ink-secondary);
+      text-align: left;
+      padding: 0.75rem 1rem;
+      background: #f1f5f9;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    th, td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background-color: #f8fafc;
+      color: #0f172a;
+      font-weight: 700;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Figures & Visual Diagrams */
+    figure {
+      margin: 2rem 0;
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      overflow: hidden;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    figure img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    figcaption {
+      width: 100%;
+      padding: 0.875rem 1.25rem;
+      background-color: var(--accent-bg);
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem;
+      color: var(--ink-secondary);
+      text-align: left;
+    }
+
+    figcaption .figure-title,
+    figcaption div.font-bold {
+      font-weight: 700;
+      color: var(--ink-primary);
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+      display: block;
+      text-align: left;
+    }
+
+    figcaption .figure-title span,
+    figcaption div.font-bold span {
+      color: var(--ink-muted);
+      font-weight: 600;
+      margin-right: 0.25rem;
+    }
+
+    details summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--accent);
+      outline: none;
+      list-style: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      user-select: none;
+      font-size: 0.825rem;
+    }
+
+    details summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details summary svg {
+      width: 0.875rem;
+      height: 0.875rem;
+      transition: transform 0.2s ease;
+      stroke: currentColor;
+    }
+
+    details[open] summary svg {
+      transform: rotate(90deg);
+    }
+
+    details summary:focus-visible {
+      text-decoration: underline;
+    }
+
+    .details-content {
+      margin-top: 0.5rem;
+      padding: 0.75rem 1rem;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+      color: var(--ink-primary);
+      line-height: 1.6;
+    }
+
+    /* Small Screen Adjustments */
+    @media (max-width: 640px) {
+      .document-stream {
+        gap: 1.5rem;
+      }
+      .page-header-bar {
+        margin-bottom: 1.25rem;
+      }
+      .document-header {
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+      }
+    }
+
+    /* ==========================================================================
+       Print-Specific CSS: Highly Accessible, Clean Page Breaks, Crisp Typography
+       ========================================================================== */
+    @media print {
+      @page {
+        size: letter portrait;
+        margin: 1.5cm 1.5cm 2cm 1.5cm;
+      }
+
+      *, *::before, *::after {
+        background: transparent !important;
+        color: #000000 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+      }
+
+      html, body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        font-size: 10.5pt !important;
+        line-height: 1.5 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      /* Hide interactive buttons, download links, controls */
+      button,
+      .no-print,
+      nav,
+      [role="toolbar"],
+      [role="dialog"],
+      [aria-label*="download" i],
+      [title*="Download" i],
+      [title*="Print" i],
+      .edit-figure-btn {
+        display: none !important;
+      }
+
+      /* Physical page stream turns into distinct printed sheets */
+      .document-stream {
+        max-width: 100% !important;
+        gap: 0 !important;
+        display: block !important;
+      }
+
+      .document-page {
+        border: none !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+        margin: 0 0 2cm 0 !important;
+        max-width: 100% !important;
+        background: #ffffff !important;
+        break-after: page !important;
+        page-break-after: always !important;
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+
+      .document-page:last-child {
+        break-after: auto !important;
+        page-break-after: auto !important;
+        margin-bottom: 0 !important;
+      }
+
+      .page-header-bar {
+        border-bottom: 0.5pt solid #cbd5e1 !important;
+        margin-bottom: 12pt !important;
+        padding-bottom: 4pt !important;
+      }
+
+      .page-badge {
+        font-size: 8.5pt !important;
+        color: #475569 !important;
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+      }
+
+      /* Headings in Print */
+      h1, h2, h3, h4, h5, h6 {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+        color: #000000 !important;
+      }
+
+      h1 {
+        font-size: 18pt !important;
+        line-height: 1.2 !important;
+        margin-top: 0 !important;
+        margin-bottom: 10pt !important;
+      }
+
+      h2 {
+        font-size: 13.5pt !important;
+        line-height: 1.25 !important;
+        margin-top: 14pt !important;
+        margin-bottom: 6pt !important;
+        border-bottom: 1pt solid #cbd5e1 !important;
+        padding-bottom: 3pt !important;
+      }
+
+      h3 {
+        font-size: 11.5pt !important;
+        line-height: 1.3 !important;
+        margin-top: 10pt !important;
+        margin-bottom: 4pt !important;
+      }
+
+      p, li, td, th {
+        font-size: 10.5pt !important;
+        line-height: 1.5 !important;
+        color: #000000 !important;
+      }
+
+      /* Keep complex structures together across page breaks */
+      figure, table, .notebox, mjx-container[display="true"] {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+
+      mjx-container[display="true"] {
+        overflow-x: visible !important;
+        margin: 10pt 0 !important;
+        text-align: center !important;
+      }
+
+      .notebox {
+        border-left: 3pt solid #4338ca !important;
+        border-top: 1pt solid #cbd5e1 !important;
+        border-right: 1pt solid #cbd5e1 !important;
+        border-bottom: 1pt solid #cbd5e1 !important;
+        background-color: #f8fafc !important;
+        padding: 8pt 12pt !important;
+        margin: 10pt 0 !important;
+      }
+
+      figure {
+        border: 1pt solid #cbd5e1 !important;
+        margin: 12pt 0 !important;
+      }
+
+      figcaption {
+        background-color: #f8fafc !important;
+        border-top: 1pt solid #cbd5e1 !important;
+        padding: 6pt 10pt !important;
+        font-size: 9pt !important;
+      }
+
+      details summary {
+        display: none !important;
+      }
+
+      .details-content {
+        display: block !important;
+        margin-top: 4pt !important;
+        padding: 4pt 6pt !important;
+        background: #ffffff !important;
+        border: 0.5pt solid #cbd5e1 !important;
+        font-size: 8.5pt !important;
+        line-height: 1.4 !important;
+      }
+
+      table {
+        border-collapse: collapse !important;
+        width: 100% !important;
+        margin: 10pt 0 !important;
+      }
+
+      th, td {
+        border: 1pt solid #cbd5e1 !important;
+        padding: 5pt 7pt !important;
+        font-size: 9.5pt !important;
+      }
+
+      th {
+        background-color: #f1f5f9 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="document-stream" role="main">
+    
+      <section class="document-page" id="page-sheet-1" aria-label="Page 1 of 6">
+        <div class="page-header-bar" aria-hidden="true">
+          <span class="page-badge">Page 1 of 6</span>
+        </div>
+
+        
+          <header class="document-header">
+            <h1 id="document-title">Sec 5.7 Nonhomogeneous Linear systems</h1>
+            
+            
+              <p class="original-pdf-link-row no-print">
+                <a
+                  class="original-pdf-link"
+                  href="266%205.7%20261111.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open original PDF 266 5.7 261111.pdf in a new tab"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                    <polyline points="10 9 9 9 8 9"/>
+                  </svg>
+                  <span>Open original PDF (266 5.7 261111.pdf)</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                    <polyline points="15 3 21 3 21 9"/>
+                    <line x1="10" y1="14" x2="21" y2="3"/>
+                  </svg>
+                </a>
+              </p>
+            
+          </header>
+        
+
+        <article class="math-content" id="page-content-1">
+          <p class="text-slate-900 mb-1">11/11 (W) Lec 30</p>
+<p class="text-slate-900 mb-1">Tonight: Online HW 29</p>
+<p class="text-slate-900 mb-4">Handwritten HW 30: Sec 5.7 P25</p>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start my-6">
+  <div>\[ \begin{aligned} x' &= Ax + f(t) \\ x &= x_p + x_c \end{aligned} \]<ol class="list-decimal list-outside ml-6 space-y-1 mb-4 text-slate-900">
+      <li>Method of undetermined coefficients.</li>
+      <li>Variation of parameters.</li>
+    </ol>
+  </div>
+  <div class="notebox" role="region" aria-label="First-order equation review">
+    <p class="text-slate-900 mb-2">1st-order equation: \( x' = ax + f(t) \)</p>
+    <p class="text-slate-900 mb-2">\( a \): constant</p>\[ \begin{aligned} \rho(t) &= e^{\int -a\,dt} = e^{-at} \\ x &=
+    \frac{1}{\rho}\left(\int \rho f\,dt + C\right) \\ &= e^{at}\left(\int e^{-at} f\,dt + C\right) \\ x(0) &=
+    \left.\left(\int e^{-at} f\,dt\right)\right|_{t=0} + C = x_0 \\ C &= x_0 - \left.\int e^{-at} f\,dt\right|_{t=0} \\
+    x &= e^{at}x_0 + e^{at}\left(\int e^{-at} f\,dt - \left.\int e^{-at} f\,dt\right|_{t=0}\right) \\ &= e^{at}x_0 +
+    e^{at}\int_0^t e^{-as} f(s)\,ds \end{aligned} \]
+  </div>
+</div>
+<h2 class="font-bold tracking-tight text-slate-900 text-xl mt-6 mb-3">Variation of parameters</h2>\[ x'(t) = Ax + f(t)
+\]<p class="text-slate-900 mb-3">Recall \( \Phi(t) \), \( x_p(t) = \Phi(t) \int \Phi(t)^{-1} f(t)\,dt \)</p>
+<p class="text-slate-900 mb-3">Also \( x_p(t) = e^{At} \int e^{-At} f(t)\,dt \)</p>
+<p class="text-slate-900 mb-2">For initial value problem (with \( x(0) = x_0 \))</p>\[ x(t) = e^{At}x_0 + e^{At}\int_0^t
+e^{-As} f(s)\,ds \]<p class="text-slate-900 mb-2">e.g.</p>\[ \begin{cases} x_1' = 6x_1 - 7x_2 + 10 \\ x_2' = x_1 - 2x_2
+- 2e^{-t} \end{cases} \]
+        </article>
+      </section>
+    
+
+      <section class="document-page" id="page-sheet-2" aria-label="Page 2 of 6">
+        <div class="page-header-bar" aria-hidden="true">
+          <span class="page-badge">Page 2 of 6</span>
+        </div>
+
+        
+
+        <article class="math-content" id="page-content-2">
+          <h2 class="font-bold tracking-tight text-slate-900 text-xl mt-6 mb-3">Variation of Parameters: Fundamental Matrix and
+  Particular Solution</h2>\[ X_1(t) = \begin{bmatrix} 7e^{5t} \\ e^{5t} \end{bmatrix}, \quad X_2(t) = \begin{bmatrix}
+e^{-t} \\ e^{-t} \end{bmatrix} \]\[ \Phi(t) = \begin{bmatrix} 7e^{5t} & e^{-t} \\ e^{5t} & e^{-t} \end{bmatrix}, \quad
+|\Phi(t)| = 6e^{4t} \]\[ \Phi(t)^{-1} = \frac{1}{6e^{4t}} \begin{bmatrix} e^{-t} & -e^{-t} \\ -e^{5t} & 7e^{5t}
+\end{bmatrix} = \begin{bmatrix} \frac{e^{-5t}}{6} & -\frac{e^{-5t}}{6} \\ -\frac{e^{t}}{6} & \frac{7e^{t}}{6}
+\end{bmatrix} \]\[ \begin{aligned} X_p(t) &= \Phi(t) \int \Phi(t)^{-1} f(t) \, dt \\ &= \begin{bmatrix} 7e^{5t} & e^{-t}
+\\ e^{5t} & e^{-t} \end{bmatrix} \int \begin{bmatrix} \frac{e^{-5t}}{6} & -\frac{e^{-5t}}{6} \\ -\frac{e^{t}}{6} &
+\frac{7e^{t}}{6} \end{bmatrix} \begin{bmatrix} 10 \\ -2e^{-t} \end{bmatrix} dt \\ &= \begin{bmatrix} 7e^{5t} & e^{-t} \\
+e^{5t} & e^{-t} \end{bmatrix} \int \begin{bmatrix} \frac{5}{3}e^{-5t} + \frac{1}{3}e^{-6t} \\ -\frac{5}{3}e^{t} -
+\frac{7}{3} \end{bmatrix} dt \\ &= \begin{bmatrix} 7e^{5t} & e^{-t} \\ e^{5t} & e^{-t} \end{bmatrix} \begin{bmatrix}
+-\frac{1}{3}e^{-5t} - \frac{1}{18}e^{-6t} \\ -\frac{5}{3}e^{t} - \frac{7}{3}t \end{bmatrix} \\ &= \begin{bmatrix}
+-\frac{7}{3} - \frac{7}{18}e^{-t} - \frac{5}{3} - \frac{7}{3}te^{-t} \\ -\frac{1}{3} - \frac{1}{18}e^{-t} - \frac{5}{3}
+- \frac{7}{3}te^{-t} \end{bmatrix} \\ &= \begin{bmatrix} -4 - \frac{7}{18}e^{-t} - \frac{7}{3}te^{-t} \\ -2 -
+\frac{1}{18}e^{-t} - \frac{7}{3}te^{-t} \end{bmatrix} \end{aligned} \]
+        </article>
+      </section>
+    
+
+      <section class="document-page" id="page-sheet-3" aria-label="Page 3 of 6">
+        <div class="page-header-bar" aria-hidden="true">
+          <span class="page-badge">Page 3 of 6</span>
+        </div>
+
+        
+
+        <article class="math-content" id="page-content-3">
+          <h2 class="font-bold tracking-tight text-slate-900 text-xl mt-6 mb-3">Method of undetermined coefficients</h2>
+<p class="text-slate-900 mb-3">In this course.. \( f(t) = \vec{u}(t) e^{rt} \) (\( \vec{u}(t) \): column vector of
+  polynomials)</p>
+<p class="text-slate-900 mb-3">usually, \( \vec{u}(t) = \vec{u} \) (constant vector) or \( \vec{u}t \).</p>
+<p class="text-slate-900 mb-2">Set up \( X_p = t^s P_n(t) e^{rt} \)</p>
+<ul class="list-disc list-outside ml-6 space-y-1 mb-4 text-slate-900">
+  <li>\( n \) is the degree of \( \vec{u}(t) \)</li>
+  <li>\( s \): smallest nonnegative integer such that no term in \( X_p \) duplicates \( X_c \)</li>
+</ul>
+<p class="text-slate-900 mb-2">eg: \( f(t) = \vec{u} e^{rt} \)</p>
+<ul class="list-disc list-outside ml-6 space-y-2 mb-4 text-slate-900">
+  <li>If \( r \) is not an eigenvalue of \( A \): set \( X_p = \vec{v} e^{rt} \)</li>
+  <li>If \( r \) is an eigenvalue (multi 1): set \( X_p = (\vec{v}_1 t + \vec{v}_2) e^{rt} \)</li>
+  <li>If \( r \) is an eigenvalue (multi 2): set \( X_p = (\vec{v}_1 t^2 + \vec{v}_2 t + \vec{v}_3) e^{rt} \)</li>
+</ul>
+        </article>
+      </section>
+    
+
+      <section class="document-page" id="page-sheet-4" aria-label="Page 4 of 6">
+        <div class="page-header-bar" aria-hidden="true">
+          <span class="page-badge">Page 4 of 6</span>
+        </div>
+
+        
+
+        <article class="math-content" id="page-content-4">
+          <h2 class="font-bold tracking-tight text-slate-900 text-xl mt-6 mb-3">Example: Nonhomogeneous Linear System</h2>
+<p class="text-slate-900 mb-3">eg.</p>\[ \begin{cases} x_1' = 6x_1 - 7x_2 + 10 \\ x_2' = x_1 - 2x_2 - 2e^{-t}
+\end{cases} \]\[ X' = \begin{pmatrix} 6 & -7 \\ 1 & -2 \end{pmatrix} X + \begin{pmatrix} 10 \\ 0 \end{pmatrix} +
+\begin{pmatrix} 0 \\ -2 \end{pmatrix} e^{-t} \]\[ \begin{vmatrix} 6 - \lambda & -7 \\ 1 & -2 - \lambda \end{vmatrix} =
+\lambda^2 - 4\lambda - 12 + 7 = \lambda^2 - 4\lambda - 5 = (\lambda - 5)(\lambda + 1) \]\[ \begin{aligned} \lambda &= 5
+& \begin{pmatrix} 1 & -7 \\ 1 & -7 \end{pmatrix} && \vec{v}_1 &= \begin{pmatrix} 7 \\ 1 \end{pmatrix} \\ \lambda_2 &= -1
+& \begin{pmatrix} 7 & -7 \\ 1 & -1 \end{pmatrix} && \vec{v}_2 &= \begin{pmatrix} 1 \\ 1 \end{pmatrix} \end{aligned} \]\[
+X_c = c_1 \begin{pmatrix} 7 \\ 1 \end{pmatrix} e^{5t} + c_2 \begin{pmatrix} 1 \\ 1 \end{pmatrix} e^{-t} \]<p class="text-slate-900 mb-3">With \( (0, 5, 0) \) and \( (0, -1, 0) \), and form \( \left( P_m(t) e^{rt} \begin{matrix}
+  \sin kt \\ \cos kt \end{matrix} \right) \).</p>
+<p class="text-slate-900 mb-3">\( f(t) = \begin{pmatrix} 10 \\ 0 \end{pmatrix} + e^{-t} \begin{pmatrix} 0 \\ -2
+  \end{pmatrix} \); \( e^{-t} \) duplicates \( \begin{pmatrix} 1 \\ 1 \end{pmatrix} e^{-t} \).</p>
+<p class="text-slate-900 mb-3">For \( \begin{pmatrix} 10 \\ 0 \end{pmatrix} \), \( t^s \vec{v}_1 \), choose \( s = 0
+  \implies \vec{v}_1 \).</p>
+<p class="text-slate-900 mb-3">For \( e^{-t} \begin{pmatrix} 0 \\ -2 \end{pmatrix} \), \( t^s \vec{v}_2 e^{-t} \),
+  choose \( s = 1 \implies (\vec{v}_2 t + \vec{v}_3) e^{-t} \).</p>
+        </article>
+      </section>
+    
+
+      <section class="document-page" id="page-sheet-5" aria-label="Page 5 of 6">
+        <div class="page-header-bar" aria-hidden="true">
+          <span class="page-badge">Page 5 of 6</span>
+        </div>
+
+        
+
+        <article class="math-content" id="page-content-5">
+          <h2 class="font-bold tracking-tight text-slate-900 text-xl mt-6 mb-3">Particular Solution \( X_p \)</h2>\[
+\begin{aligned} X_p &= \vec{v}_1 + (\vec{v}_2 t + \vec{v}_3) e^{-t} \\ &= \begin{bmatrix} a \\ b \end{bmatrix} + \left(
+\begin{bmatrix} c \\ d \end{bmatrix} t + \begin{bmatrix} c' \\ d' \end{bmatrix} \right) e^{-t} \end{aligned} \]<h3 class="font-bold tracking-tight text-slate-900 text-lg mt-4 mb-2">Remark:</h3>
+<ol class="list-decimal list-outside ml-6 space-y-3 mb-4 text-slate-900">
+  <li>If there is no "duplicates", the particular solution\[ X_p = \vec{v}_1 + \vec{v}_2 e^{-t} = \begin{bmatrix} a \\ b
+    \end{bmatrix} + \begin{bmatrix} c \\ d \end{bmatrix} e^{-t} \]</li>
+  <li>Check the difference from \( n \)-th order linear equation (there is no \( \begin{bmatrix} c' \\ d' \end{bmatrix}
+    e^{-t} \))</li>
+  <li>More precisely, if \( c' = d' \), \( \begin{bmatrix} c' \\ d' \end{bmatrix} e^{-t} \) duplicates \(
+    \begin{bmatrix} 1 \\ 1 \end{bmatrix} e^{-t} \) in \( X_c \).<p class="text-slate-900 mt-2">If \( c' = d' \), \(
+      \begin{bmatrix} c' \\ d' \end{bmatrix} e^{-t} \) does not duplicate.</p>
+  </li>
+</ol>\[ X_p = \begin{bmatrix} a + c t e^{-t} + c' e^{-t} \\ b + d t e^{-t} + d' e^{-t} \end{bmatrix} \]\[ X_p' =
+\begin{bmatrix} c e^{-t} - c t e^{-t} - c' e^{-t} \\ d e^{-t} - d t e^{-t} - d' e^{-t} \end{bmatrix} = \begin{bmatrix}
+(c - c') e^{-t} - c t e^{-t} \\ (d - d') e^{-t} - d t e^{-t} \end{bmatrix} \]
+        </article>
+      </section>
+    
+
+      <section class="document-page" id="page-sheet-6" aria-label="Page 6 of 6">
+        <div class="page-header-bar" aria-hidden="true">
+          <span class="page-badge">Page 6 of 6</span>
+        </div>
+
+        
+
+        <article class="math-content" id="page-content-6">
+          <h2 class="font-bold tracking-tight text-slate-900 text-xl mt-6 mb-3">Matrix Differential Equation Solution</h2>
+<p class="text-slate-900 mb-3">The derivation for the particular solution vector \( y_p \) is as follows:</p>
+<div>\[ \begin{pmatrix} 6 & -7 \\ 1 & -2 \end{pmatrix} x_p + \begin{pmatrix} 10 \\ -2e^{-t} \end{pmatrix} \]</div>
+<p class="text-slate-900 mb-3">Substituting the form of the solution:</p>
+<div>\[ \begin{pmatrix} 6 & -7 \\ 1 & -2 \end{pmatrix} \begin{pmatrix} a + cte^{-t} + c'e^{-t} \\ b + dte^{-t} +
+  d'e^{-t} \end{pmatrix} + \begin{pmatrix} 10 \\ -2e^{-t} \end{pmatrix} \]</div>
+<p class="text-slate-900 mb-3">Expanding the matrix multiplication:</p>
+<div>\[ = \begin{pmatrix} 6a - 7b + 10 + (6c' - 7d')e^{-t} + (6c - 7d)te^{-t} \\ a - 2b + (c' - 2d' - 2)e^{-t} + (c -
+  2d)te^{-t} \end{pmatrix} \]</div>
+<p class="text-slate-900 mb-3">Equating coefficients leads to three systems of equations:</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start my-6">
+  <div class="text-slate-900">\( \begin{cases} 6a - 7b + 10 = 0 \\ a - 2b = 0 \end{cases} \)</div>
+  <div class="text-slate-900">\( \begin{cases} 6c' - 7d' = c - c' \\ c' - 2d' - 2 = d - d' \end{cases} \)</div>
+  <div class="text-slate-900">\( \begin{cases} 6c - 7d = -c \\ c - 2d = -d \end{cases} \)</div>
+</div>
+<p class="text-slate-900 mb-3">Solving the systems:</p>
+<ul class="list-disc list-outside ml-6 space-y-1 mb-4 text-slate-900">
+  <li>From the first system: \( a = 2b \), \( 5b + 10 = 0 \implies b = -2, a = -4 \).</li>
+  <li>From the third system: \( 6c - 7d = -c \implies 7c = 7d \implies c = d \).</li>
+  <li>From the second system: \( 7c' - 7d' = c \) and \( c' - d' = d + 2 \). Substituting \( c=d \) gives \( 6c' - 6d' =
+    -2 \). Assigning \( d'=0 \) yields \( c' = -\frac{1}{3} \) and \( c = d = -\frac{7}{3} \).</li>
+</ul>
+<p class="text-slate-900 mb-3">The final particular solution vector is:</p>
+<div>\[ y_p = \begin{pmatrix} -4 - \frac{7}{3}te^{-t} - \frac{1}{3}e^{-t} \\ -2 - \frac{7}{3}te^{-t} \end{pmatrix} \]
+</div>
+        </article>
+      </section>
+    
+  </main>
+</body>
+</html>
